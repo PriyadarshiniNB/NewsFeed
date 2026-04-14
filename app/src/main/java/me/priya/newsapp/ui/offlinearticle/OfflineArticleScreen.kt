@@ -31,7 +31,7 @@ import me.priya.newsapp.utils.AppConstant
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OfflineArticleRoute(
+fun OfflineArticleScreenMain(
     onNewsClick: (url: String) -> Unit,
     viewModel: OfflineArticleViewModel = hiltViewModel()
 ) {

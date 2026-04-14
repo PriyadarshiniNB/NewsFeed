@@ -7,15 +7,15 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "article")
 data class Article(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
+    @ColumnInfo(name = "url")
+    val url: String = "",
     @ColumnInfo(name = "article_id")
     val id: Int = 0,
     @ColumnInfo(name = "title")
     val title: String = "",
     @ColumnInfo(name = "description")
     val description: String?,
-    @ColumnInfo(name = "url")
-    val url: String = "",
     @ColumnInfo(name = "urlToImage")
     val imageUrl: String? = "",
     @Embedded val source: Source

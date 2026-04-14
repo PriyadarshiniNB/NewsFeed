@@ -20,6 +20,7 @@ junit = "4.13.2"
 junitTestExt = "1.2.1"
 espressoCore = "3.6.1"
 composePlugin = "2.2.0"
+runtime = "1.10.6"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
@@ -50,6 +51,7 @@ espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref =
 compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtime" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

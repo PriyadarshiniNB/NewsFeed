@@ -7,6 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import me.priya.newsapp.data.api.ApiKeyInterceptor
 import me.priya.newsapp.data.api.NetworkService
 import me.priya.newsapp.data.local.AppDatabase
 import me.priya.newsapp.data.local.DatabaseService
@@ -15,6 +16,8 @@ import me.priya.newsapp.di.BaseUrl
 import me.priya.newsapp.di.DatabaseName
 import me.priya.newsapp.utils.DefaultNetworkHelper
 import me.priya.newsapp.utils.NetworkHelper
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -29,20 +32,42 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideGsonConverterFactory(): GsonConverterFactory = GsonConverterFactory.create()
+    fun provideGsonConverterFactory(): GsonConverterFactory =
+        GsonConverterFactory.create()
+
+    @Provides
+    fun provideApiKeyInterceptor(): ApiKeyInterceptor {
+        return ApiKeyInterceptor()
+    }
+
+    @Provides
+    fun provideOkHttpClient(
+        apiKeyInterceptor: ApiKeyInterceptor
+    ): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(apiKeyInterceptor)
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+            .build()
+    }
+
 
     @Provides
     @Singleton
     fun provideNetworkService(
         @BaseUrl baseUrl: String,
-        gsonConverterFactory: GsonConverterFactory
+        gsonConverterFactory: GsonConverterFactory,
+        okHttpClient: OkHttpClient
     ): NetworkService {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
+            .client(okHttpClient)
             .addConverterFactory(gsonConverterFactory)
             .build()
             .create(NetworkService::class.java)
     }
+
 
     @Provides
     @Singleton

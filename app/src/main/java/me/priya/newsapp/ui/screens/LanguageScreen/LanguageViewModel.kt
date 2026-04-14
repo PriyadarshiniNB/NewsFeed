@@ -1,30 +1,24 @@
-package me.priya.newsapp.ui.offlinearticle
+package me.priya.newsapp.ui.screens.LanguageScreen
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
-import me.priya.newsapp.data.domain.usecase.GetOfflineArticlesUseCase
 import me.priya.newsapp.data.local.entity.Article
 import me.priya.newsapp.ui.base.UiState
-import me.priya.newsapp.utils.NetworkHelper
-import me.priya.newsapp.utils.AppConstant
 import javax.inject.Inject
+import kotlinx.coroutines.flow.stateIn
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.launch
+import me.priya.newsapp.data.domain.usecase.GetTwoLanguagesNewsUseCase
 
 @HiltViewModel
-class OfflineArticleViewModel @Inject constructor(
-    networkHelper: NetworkHelper,
-    private val getOfflineArticlesUseCase: GetOfflineArticlesUseCase
-) :
-    ViewModel() {
+class LanguageViewModel @Inject constructor(
+    private val getTwoLanguagesNewsUseCase: GetTwoLanguagesNewsUseCase
+) : ViewModel() {
 
     private val isLoading = MutableStateFlow(false)
     private val articles = MutableStateFlow<List<Article>>(emptyList())
@@ -37,9 +31,7 @@ class OfflineArticleViewModel @Inject constructor(
 
                 errorMsg != null -> UiState.Error(errorMsg)
 
-                data.isNotEmpty() -> UiState.Success(data)
-
-                else -> UiState.Loading
+                else -> UiState.Success(data)
             }
         }.stateIn(
             viewModelScope,
@@ -47,22 +39,21 @@ class OfflineArticleViewModel @Inject constructor(
             UiState.Loading
         )
 
-
-init {
-    fetchArticles()
-}
-
-    private fun fetchArticles() {
+    fun fetchTwoLanguages(lang1: String, lang2: String) {
         viewModelScope.launch {
 
-            getOfflineArticlesUseCase()
-                .catch { e ->
-                   error.value = "error"
+            isLoading.value = true
+            error.value = null
+
+            getTwoLanguagesNewsUseCase(lang1, lang2)
+                .catch {
+                    error.value = it.message ?: "Error loading languages"
+                    isLoading.value = false
                 }
                 .collect {
                     articles.value = it
+                    isLoading.value = false
                 }
         }
     }
-
 }

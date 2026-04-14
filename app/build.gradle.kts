@@ -55,6 +55,14 @@ android {
     }
 }
 
+hilt {
+    enableAggregatingTask = true
+}
+
+ksp {
+    arg("hilt.correctErrorTypes", "true")
+}
+
 dependencies {
 
     implementation(libs.core.ktx)
@@ -67,10 +75,10 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
-    implementation(libs.lifecycle.extensions)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.dagger.hilt)
+    implementation(libs.runtime)
     ksp(libs.dagger.hilt.compiler)
     implementation(libs.browser)
     implementation(libs.hilt.navigation.compose)
@@ -101,6 +109,8 @@ dependencies {
 
 // Testing
     testImplementation("org.mockito:mockito-core:5.7.0")
+
+    implementation("androidx.navigation:navigation-compose:2.7.7")
 
 
 }

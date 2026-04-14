@@ -6,12 +6,16 @@ import me.priya.newsapp.data.local.entity.Article
 data class ApiArticle(
     @SerializedName("title")
     val title: String = "",
+
     @SerializedName("description")
-    val description: String?,
+    val description: String = "",
+
     @SerializedName("url")
     val url: String = "",
+
     @SerializedName("urlToImage")
-    val imageUrl: String = "",
+    val imageUrl: String? = "",
+
     @SerializedName("source")
     val apiSource: ApiSource
 )

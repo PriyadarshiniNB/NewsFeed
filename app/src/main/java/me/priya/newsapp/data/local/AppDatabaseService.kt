@@ -9,7 +9,7 @@ class AppDatabaseService constructor(private val appDatabase: AppDatabase) : Dat
         return appDatabase.articleDao().getAll()
     }
 
-    override fun deleteAllAndInsertAll(articles: List<Article>) {
+    override suspend fun deleteAllAndInsertAll(articles: List<Article>) {
         appDatabase.articleDao().deleteAllAndInsertAll(articles)
     }
 
