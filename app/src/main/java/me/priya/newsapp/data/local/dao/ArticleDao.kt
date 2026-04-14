@@ -26,4 +26,7 @@ interface ArticleDao {
         insertAll(articles)
     }
 
+    @Query("DELETE FROM article WHERE created_at < :time")
+    suspend fun deleteOldArticles(time: Long)
+
 }

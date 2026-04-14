@@ -7,6 +7,10 @@ interface DatabaseService {
 
     fun getArticles(): Flow<List<Article>>
 
+    suspend fun deleteOldArticles(time: Long)
+
     suspend fun deleteAllAndInsertAll(articles: List<Article>)
+
+
 
 }

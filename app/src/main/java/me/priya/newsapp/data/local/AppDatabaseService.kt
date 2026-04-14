@@ -9,6 +9,11 @@ class AppDatabaseService constructor(private val appDatabase: AppDatabase) : Dat
         return appDatabase.articleDao().getAll()
     }
 
+    override suspend fun deleteOldArticles(time: Long) {
+        return appDatabase.articleDao().deleteOldArticles(time)
+    }
+
+
     override suspend fun deleteAllAndInsertAll(articles: List<Article>) {
         appDatabase.articleDao().deleteAllAndInsertAll(articles)
     }

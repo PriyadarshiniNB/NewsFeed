@@ -146,4 +146,9 @@ class NewsRepository @Inject constructor(
         return databaseService.getArticles()
     }
 
+    suspend fun deleteOldNews(days: Int) {
+        val timeLimit = System.currentTimeMillis() - (days * 24 * 60 * 60 * 1000L)
+        databaseService.deleteOldArticles(timeLimit)
+    }
+
 }

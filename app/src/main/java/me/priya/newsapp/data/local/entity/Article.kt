@@ -18,5 +18,7 @@ data class Article(
     val description: String?,
     @ColumnInfo(name = "urlToImage")
     val imageUrl: String? = "",
-    @Embedded val source: Source
+    @Embedded val source: Source,
+    @ColumnInfo(name = "created_at")
+    val createdAt: Long = System.currentTimeMillis()
 )

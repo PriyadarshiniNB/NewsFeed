@@ -79,6 +79,8 @@ dependencies {
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.dagger.hilt)
     implementation(libs.runtime)
+    implementation(libs.hilt.common)
+    implementation(libs.work.runtime.ktx)
     ksp(libs.dagger.hilt.compiler)
     implementation(libs.browser)
     implementation(libs.hilt.navigation.compose)
@@ -111,6 +113,9 @@ dependencies {
     testImplementation("org.mockito:mockito-core:5.7.0")
 
     implementation("androidx.navigation:navigation-compose:2.7.7")
+
+    implementation("androidx.hilt:hilt-work:1.0.0")
+    ksp("androidx.hilt:hilt-compiler:1.0.0")
 
 
 }
