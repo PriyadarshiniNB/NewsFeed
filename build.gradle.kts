@@ -5,4 +5,5 @@ plugins {
     alias(libs.plugins.devtools.ksp) apply false
     alias(libs.plugins.dagger.hilt.plugin) apply false
     alias(libs.plugins.compose.plugin) apply false
+    id("com.google.gms.google-services") version "4.4.1" apply false
 }

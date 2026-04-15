@@ -19,3 +19,27 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# keep model classes
+
+-keep class me.priya.newsapp.data.model.** { *; }
+
+#   GSON
+
+-keep class com.google.gson.** {*;}
+-keepattributes Signature
+-keepattributes *Annotation*
+
+-keep class android.room.** {*;}
+-keep @androidx.room.Entity class * { *; }
+
+# hilt or dagger
+-keep class dagger.hilt.** { *; }
+-keep class javax.inject.** { *; }
+-keep class * extends dagger.hilt.internal.GeneratedComponent { *; }
+
+-keep class androidx.work.** { *; }
+-keep class * extends androidx.work.Worker
+
+-dontwarn okhttp3.**
+-dontwarn okio.**

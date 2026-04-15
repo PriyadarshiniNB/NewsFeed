@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.dagger.hilt.plugin)
     alias(libs.plugins.compose.plugin)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -29,7 +30,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -116,6 +118,8 @@ dependencies {
 
     implementation("androidx.hilt:hilt-work:1.0.0")
     ksp("androidx.hilt:hilt-compiler:1.0.0")
+
+    implementation("com.google.firebase:firebase-messaging:23.4.0")
 
 
 }
