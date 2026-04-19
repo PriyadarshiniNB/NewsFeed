@@ -16,6 +16,7 @@ import me.priya.newsapp.di.BaseUrl
 import me.priya.newsapp.di.DatabaseName
 import me.priya.newsapp.utils.DefaultNetworkHelper
 import me.priya.newsapp.utils.NetworkHelper
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -41,16 +42,31 @@ class ApplicationModule {
     }
 
     @Provides
+    @Singleton
+    fun provideCertificatePinner(): CertificatePinner {
+        return CertificatePinner.Builder()
+            .add(
+                "newsapi.org",
+                "sha256/mYL3uKZJYESzdUU9uD/Maao0nzbD18vS1WpsDRh7GDU="
+            )
+            .build()
+    }
+
+
+    @Provides
     fun provideOkHttpClient(
-        apiKeyInterceptor: ApiKeyInterceptor
+        apiKeyInterceptor: ApiKeyInterceptor,
+        certificatePinner: CertificatePinner
     ): OkHttpClient {
         return OkHttpClient.Builder()
+            .certificatePinner(certificatePinner)
             .addInterceptor(apiKeyInterceptor)
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             })
             .build()
     }
+
 
 
     @Provides
