@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
 import me.priya.newsapp.ui.offlinearticle.OfflineArticleScreenMain
 import me.priya.newsapp.ui.screens.CountryAndLanguageListScreen.CountryScreen
 import me.priya.newsapp.ui.screens.CountryAndLanguageListScreen.LanguageListScreen
@@ -64,7 +65,14 @@ fun AppNavGraph(){
             )
         }
 
-        composable("sources") {
+        composable(
+            route = "sources",
+            deepLinks = listOf(
+                navDeepLink {
+                    uriPattern = "https://www.priya-news.com/sources"
+                }
+            )
+        ) {
             SourceScreen(
                 onSourceClick = { sourceId ->
                     navController.navigate("news_by_source/$sourceId")
@@ -100,6 +108,7 @@ fun AppNavGraph(){
                 onNewsClick = { url ->  openCustomTab(url)}
             )
         }
+
 
         composable(
             route = "news?country={country}&language={language}",

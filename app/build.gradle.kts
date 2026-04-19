@@ -54,6 +54,7 @@ android {
         compose = true
         viewBinding = true
         buildConfig = true
+        aidl = true
     }
 }
 
