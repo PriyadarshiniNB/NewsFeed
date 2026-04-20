@@ -1,5 +1,6 @@
 package me.priya.newsapp.data.local.dao
 
+import android.database.Cursor
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -28,5 +29,8 @@ interface ArticleDao {
 
     @Query("DELETE FROM article WHERE created_at < :time")
     suspend fun deleteOldArticles(time: Long)
+
+    @Query("SELECT * FROM article")
+    fun getArticlesCursor(): Cursor
 
 }

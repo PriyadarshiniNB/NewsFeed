@@ -64,6 +64,11 @@
 
         </service>
 
+        <provider
+            android:name=".provider.NewsContentProvider"
+            android:authorities="me.priya.newsapp.provider"
+            android:exported="true" />
+
     </application>
 
 </manifest>
