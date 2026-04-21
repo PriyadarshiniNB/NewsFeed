@@ -8,6 +8,7 @@ import androidx.core.net.toUri
 object NewsContract {
     const val AUTHORITY = "me.priya.newsapp.provider" // domain name
     const val PATH_ARTICLES = "articles" // specify folder name
-    val CONTENT_URI: Uri = "content://$AUTHORITY/$PATH_ARTICLES".toUri() // The full "Web Address" (URL) for your data.
+    val CONTENT_URI: Uri =
+        "content://$AUTHORITY/$PATH_ARTICLES".toUri() // The full "Web Address" (URL) for your data.
 }
 

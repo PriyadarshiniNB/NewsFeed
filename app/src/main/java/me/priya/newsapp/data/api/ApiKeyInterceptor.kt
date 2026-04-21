@@ -4,9 +4,8 @@ package me.priya.newsapp.data.api
 import me.priya.newsapp.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
-import javax.inject.Inject
 
-class ApiKeyInterceptor : Interceptor{
+class ApiKeyInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
         var newUrl = originalRequest.url.newBuilder()

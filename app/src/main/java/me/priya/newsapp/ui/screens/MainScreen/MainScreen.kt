@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -28,14 +27,14 @@ import java.util.Calendar
 
 @SuppressLint("ServiceCast")
 @Composable
-fun MainScreen(onNavigate:(String) -> Unit){
+fun MainScreen(onNavigate: (String) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
 
-    ){
+    ) {
 
         val context = LocalContext.current
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
@@ -97,7 +96,8 @@ fun setSimpleAlarm(context: Context, alarmManager: AlarmManager?) {
                 action = Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM
             }
             context.startActivity(intentSettings)
-            Toast.makeText(context, "Please allow Exact Alarms in Settings", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Please allow Exact Alarms in Settings", Toast.LENGTH_LONG)
+                .show()
             return
         }
     }

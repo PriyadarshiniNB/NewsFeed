@@ -1,6 +1,5 @@
 package me.priya.newsapp.ui.navigation
 
-import android.R.attr.onClick
 import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.compose.runtime.Composable
@@ -14,7 +13,6 @@ import androidx.navigation.navDeepLink
 import me.priya.newsapp.ui.offlinearticle.OfflineArticleScreenMain
 import me.priya.newsapp.ui.screens.CountryAndLanguageListScreen.CountryScreen
 import me.priya.newsapp.ui.screens.CountryAndLanguageListScreen.LanguageListScreen
-import me.priya.newsapp.ui.screens.LanguageScreen.LanguageScreen
 import me.priya.newsapp.ui.screens.MainScreen.MainScreen
 import me.priya.newsapp.ui.screens.NewsBySourceScreen.NewsBySourceScreen
 import me.priya.newsapp.ui.screens.NewsListScreen.NewsListScreen
@@ -23,7 +21,7 @@ import me.priya.newsapp.ui.screens.SourceScreen.SourceScreen
 import me.priya.newsapp.ui.screens.TopHeadlines.TopHeadLineScreen
 
 @Composable
-fun AppNavGraph(){
+fun AppNavGraph() {
 
     var navController = rememberNavController()
 
@@ -38,7 +36,7 @@ fun AppNavGraph(){
         navController = navController,
         startDestination = "main"
     ) {
-        composable("main"){
+        composable("main") {
             MainScreen { route ->
                 navController.navigate(route)
 
@@ -97,15 +95,9 @@ fun AppNavGraph(){
             )
         }
 
-//        composable("language") {
-//            LanguageScreen(
-//                onClick = { url -> openCustomTab(url) }
-//            )
-//        }
-
         composable("offline") {
-            OfflineArticleScreenMain (
-                onNewsClick = { url ->  openCustomTab(url)}
+            OfflineArticleScreenMain(
+                onNewsClick = { url -> openCustomTab(url) }
             )
         }
 

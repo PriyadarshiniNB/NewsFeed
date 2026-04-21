@@ -6,9 +6,9 @@ import me.priya.newsapp.data.repository.NewsRepository
 import javax.inject.Inject
 
 class GetTopHeadlinesUseCase @Inject constructor(
-    private val repository : NewsRepository
-){
-    operator fun invoke(country : String) : Flow<List<Article>>{
+    private val repository: NewsRepository
+) {
+    operator fun invoke(country: String): Flow<List<Article>> {
         return repository.getTopHeadlines(country)
     }
 

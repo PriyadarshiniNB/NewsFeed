@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.zip
 import me.priya.newsapp.data.api.NetworkService
 import me.priya.newsapp.data.local.DatabaseService
 import me.priya.newsapp.data.local.entity.Article
-import me.priya.newsapp.data.model.ApiArticle
 import me.priya.newsapp.data.model.ApiSource
 import me.priya.newsapp.data.model.toArticleEntity
 import me.priya.newsapp.utils.NetworkHelper

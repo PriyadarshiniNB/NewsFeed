@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import me.priya.newsapp.data.domain.usecase.GetSourcesUseCase
-import me.priya.newsapp.data.local.entity.Article
 import me.priya.newsapp.data.model.ApiSource
 import me.priya.newsapp.ui.base.UiState
 import javax.inject.Inject
@@ -45,7 +44,7 @@ class SourcesViewModel @Inject constructor(
         )
 
 
-    fun fetch(country : String = "us") {
+    fun fetch() {
         viewModelScope.launch {
             isLoading.value = true
             getSourcesUseCase().catch {

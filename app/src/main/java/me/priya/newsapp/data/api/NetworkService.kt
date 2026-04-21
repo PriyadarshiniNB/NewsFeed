@@ -2,9 +2,7 @@ package me.priya.newsapp.data.api
 
 import me.priya.newsapp.data.model.ApiArticleResponse
 import me.priya.newsapp.data.model.ApiSourceResponse
-import me.priya.newsapp.utils.AppConstant
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.Query
 
 

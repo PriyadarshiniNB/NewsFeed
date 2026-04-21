@@ -95,19 +95,6 @@ class ApplicationModule {
     @Provides
     fun provideDatabaseName(): String = "news-database"
 
-//    @Provides
-//    @Singleton
-//    fun provideAppDatabase(
-//        @ApplicationContext context: Context,
-//        @DatabaseName databaseName: String
-//    ): AppDatabase {
-//        return Room.databaseBuilder(
-//            context,
-//            AppDatabase::class.java,
-//            databaseName
-//        ).build()
-//    }
-
     @Provides
     @Singleton
     fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {

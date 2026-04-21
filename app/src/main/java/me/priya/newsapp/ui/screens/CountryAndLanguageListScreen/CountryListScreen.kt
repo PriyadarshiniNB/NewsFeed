@@ -30,6 +30,7 @@ fun CountryScreen(
     val countries by viewModel.countries.collectAsState()
 
     Column(
+
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)

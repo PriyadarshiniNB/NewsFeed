@@ -3,20 +3,17 @@ package me.priya.newsapp.ui.offlinearticle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import me.priya.newsapp.data.domain.usecase.GetOfflineArticlesUseCase
 import me.priya.newsapp.data.local.entity.Article
 import me.priya.newsapp.ui.base.UiState
 import me.priya.newsapp.utils.NetworkHelper
-import me.priya.newsapp.utils.AppConstant
 import javax.inject.Inject
 
 @HiltViewModel

@@ -85,7 +85,7 @@ fun ArticleItem(  article: Article,
 
     Card(
         modifier = Modifier
-            .padding(8.dp)
+            .padding(16.dp)
             .clickable { article.url.let { onClick(it) } }
     ) {
         Column(modifier = Modifier.padding(8.dp)) {
