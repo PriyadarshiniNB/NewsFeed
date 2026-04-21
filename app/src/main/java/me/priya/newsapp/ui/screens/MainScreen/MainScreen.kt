@@ -68,10 +68,15 @@ fun MainScreen(onNavigate:(String) -> Unit){
 
 fun setSimpleAlarm(context: Context, alarmManager: AlarmManager?) {
     val intent = Intent(context, AlarmReceiver::class.java)
+
+    //PendingIntent is a message you want to send later, even if your app is closed.
     val pendingIntent = PendingIntent.getBroadcast(
         context, 0, intent,
         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
     )
+
+    //flag update current - It prevents your app from accidentally creating 100 identical alarms if the user clicks the button 100 times.
+    //FLAG_IMMUTABLE - Once I give you this envelope, nobody (not even the System or another app) can change what is written inside."
 
     val calendar = Calendar.getInstance().apply {
         set(Calendar.HOUR_OF_DAY, 10)
@@ -84,7 +89,7 @@ fun setSimpleAlarm(context: Context, alarmManager: AlarmManager?) {
         }
     }
 
-    // 🛡️ THE SECURITY CHECK
+    //  THE SECURITY CHECK
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         if (alarmManager?.canScheduleExactAlarms() == false) {
             // The user hasn't granted permission in Settings
